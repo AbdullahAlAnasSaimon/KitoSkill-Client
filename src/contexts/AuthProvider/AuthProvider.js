@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { createContext } from 'react';
-import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
+import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import app from '../../firebase/firebase.config';
 
 
@@ -18,11 +18,17 @@ const AuthProvider = ({children}) => {
     return createUserWithEmailAndPassword(auth, email, password);
   }
 
+  // log in user with email and password
+  const logInUser = (email, password) =>{
+    return signInWithEmailAndPassword(auth, email, password);
+  }
+
   // set authInfo object with multiple value
   const authInfo = {
     user,
     setUser,
     createUser,
+    logInUser,
   };
 
   return (

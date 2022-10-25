@@ -1,11 +1,34 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { FcGoogle } from "react-icons/fc";
 import {FaGithub} from 'react-icons/fa';
+import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 
 const Login = () => {
+  const {setUser, logInUser} = useContext(AuthContext);
+
+
+  const handleLogIn = event =>{
+    event.preventDefault();
+    const form = event.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    console.log(email, password);
+
+    logInUser(email, password)
+    .then(result =>{
+      const user = result.user;
+      console.log(user);
+      setUser(user);
+      form.reset();
+    })
+    .catch(error => {
+      console.log(error);
+    })
+  }
+
   return (
-    <form className='w-4/12 mx-auto border-2 border-gray-300 p-8 my-5 rounded-lg'>
+    <form onSubmit={handleLogIn} className='w-4/12 mx-auto border-2 border-gray-300 p-8 my-5 rounded-lg'>
       <h2 className='text-3xl font-bold text-gray-700 mb-8'>Log In</h2>
       <div className='my-5'>
         <input className='border-b-2 w-full p-2 focus:border-orange-500 outline-0 duration-200 ease-in-out' type="email" name='email' placeholder='Email Address' required/>
