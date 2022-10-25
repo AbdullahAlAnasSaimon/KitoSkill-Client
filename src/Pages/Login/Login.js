@@ -3,10 +3,12 @@ import { Link } from 'react-router-dom';
 import { FcGoogle } from "react-icons/fc";
 import {FaGithub} from 'react-icons/fa';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
+import { GoogleAuthProvider } from 'firebase/auth';
 
 const Login = () => {
-  const {setUser, logInUser} = useContext(AuthContext);
+  const {setUser, logInUser, googleSignIn} = useContext(AuthContext);
 
+  const googleProvider = new GoogleAuthProvider();
 
   const handleLogIn = event =>{
     event.preventDefault();
@@ -21,6 +23,17 @@ const Login = () => {
       console.log(user);
       setUser(user);
       form.reset();
+    })
+    .catch(error => {
+      console.log(error);
+    })
+  }
+
+  const signUpWithGoogle = () =>{
+    googleSignIn(googleProvider)
+    .then(result =>{
+      const user = result.user;
+      console.log(user)
     })
     .catch(error => {
       console.log(error);
@@ -50,7 +63,7 @@ const Login = () => {
       <hr className='border-t-2 border-gray-300 my-8' />
       <p className='font-bold text-gray-500 text-center bg-white -mt-12 mb-4 w-3/12 mx-auto'>OR</p>
       <div>
-        <button type='button' className='border-2 border-gray-700 hover:bg-gray-100 w-full my-2 py-2 rounded-md'><FcGoogle className='text-xl inline-block mr-3'/>Log In With Google</button>
+        <button onClick={signUpWithGoogle} type='button' className='border-2 border-gray-700 hover:bg-gray-100 w-full my-2 py-2 rounded-md'><FcGoogle className='text-xl inline-block mr-3'/>Log In With Google</button>
         <button type='button' className='bg-gray-900 hover:bg-gray-800 text-white w-full my-2 py-3 rounded-md'><FaGithub className='text-xl inline-block mr-3 text-white'/>Log In With Github</button>
       </div>
     </form>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { createContext } from 'react';
-import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
 import app from '../../firebase/firebase.config';
 
 
@@ -23,12 +23,18 @@ const AuthProvider = ({children}) => {
     return signInWithEmailAndPassword(auth, email, password);
   }
 
+  // google sign in method
+  const googleSignIn = provider =>{
+    return signInWithPopup(auth, provider);
+  }
+
   // set authInfo object with multiple value
   const authInfo = {
     user,
     setUser,
     createUser,
     logInUser,
+    googleSignIn,
   };
 
   return (
