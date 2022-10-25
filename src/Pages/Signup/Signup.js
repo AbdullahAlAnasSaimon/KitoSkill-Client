@@ -1,11 +1,36 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { FcGoogle } from "react-icons/fc";
 import {FaGithub} from 'react-icons/fa';
+import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 
 const Signup = () => {
+
+  const {setUser, createUser} = useContext(AuthContext);
+  
+  const handleSignUp = event =>{
+    event.preventDefault();
+    const form = event.target;
+    const fullName = form.fullName.value;
+    const email = form.email.value;
+    const password = form.password.value;
+    const confirmPassword = form.confirmPassword.value;
+    console.log(fullName, email, password, confirmPassword);
+    
+    createUser(email, password)
+    .then(result =>{
+      const user = result.user;
+      console.log(user);
+      setUser(user);
+      form.reset();
+    })
+    .catch(error => {
+      console.log(error);
+    })
+  }
+
   return (
-    <form className='w-4/12 mx-auto border-2 border-gray-300 p-8 my-5 rounded-lg'>
+    <form onSubmit={handleSignUp} className='w-4/12 mx-auto border-2 border-gray-300 p-8 my-5 rounded-lg'>
       <h2 className='text-3xl font-bold text-gray-700 mb-8'>Create An Account</h2>
       
       <div className='my-5'>

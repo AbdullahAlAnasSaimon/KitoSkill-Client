@@ -7,7 +7,7 @@ const Header = () => {
   return (
     <div>
       <h1>This is header</h1>
-      <p>{user.email}</p>
+      <p>{user?.email}</p>
     </div>
   );
 };
