@@ -5,12 +5,12 @@ import LeftSideNav from '../LeftSideNav/LeftSideNav';
 
 const AllCourses = () => {
   const allCourses = useLoaderData();
-  console.log(allCourses);
+  // console.log(allCourses);
   return (
     <div className=''>
       <h2>Courses : {allCourses.length}</h2>
-      <div className='grid grid-cols-[300px_minmax(900px,_1fr)]'>
-        <div className=''>
+      <div className='grid grid-cols-[200px_minmax(900px,_1fr)]'>
+        <div>
           {
             allCourses.map(courses => <LeftSideNav
             key={courses.id}
@@ -18,7 +18,7 @@ const AllCourses = () => {
             ></LeftSideNav>)
           }
         </div>
-        <div>
+        <div className='grid grid-cols-3 gap-10 w-10/12 mx-auto'>
           {
             allCourses.map(courses => <Courses
               key={courses.id}
