@@ -3,11 +3,20 @@ import { Link, useLoaderData } from 'react-router-dom';
 
 const CourseDetails = () => {
   const singleCourseDetails = useLoaderData();
-  // console.log(singleCourseDetails);
-  const {author, details, duration, name, photo, price, seats, startingDate} = singleCourseDetails;
+  const { author, details, duration, name, photo, price, seats, startingDate } = singleCourseDetails;
+
+  window.addEventListener("scroll", () => {
+    let windowY = window.scrollY;
+    if(windowY >= 100){
+      document.getElementById('course-thumb').style.display = 'none';
+    }
+  })
+  
   return (
     <div>
-      <img src={photo} alt="" />
+      <div className='w-6/12'>
+        <img id='course-thumb' className='w-6/12' src={photo} alt="" />
+      </div>
       <h2>{name}</h2>
       <p>{details}</p>
       <p>{duration}</p>
