@@ -43,6 +43,10 @@ export const router = createBrowserRouter([
         path: '/signup',
         element: <Signup></Signup>
       },
-    ]
+    ],
+  },
+  {
+    path: '*',
+    element: <h1>404 Not Found!</h1>
   }
 ]);
