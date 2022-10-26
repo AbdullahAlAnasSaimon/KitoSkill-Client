@@ -1,6 +1,6 @@
 import React from 'react';
-import Hero from '../Hero/Hero';
 import FeaturedTopics from './FeaturedTopics/FeaturedTopics';
+import Hero from './Hero/Hero';
 
 const Home = () => {
   return (
