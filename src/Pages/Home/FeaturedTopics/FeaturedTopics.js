@@ -12,9 +12,9 @@ const FeaturedTopics = () => {
   }, []);
 
   return (
-    <div className='w-10/12 mx-auto mt-20'>
-      <h1 className='text-3xl text-center font-bold mt-24 mb-16'>Featured topics</h1>
-      <div className='grid grid-cols-3 gap-6'>
+    <div className='w-10/12 mx-auto mt-16 md:mt-20'>
+      <h1 className='text-3xl text-gray-700 text-center font-bold md:mt-24 mb-16'>Featured topics</h1>
+      <div className='grid grid-cols-1 md:grid-cols-3 gap-6'>
         {
           topics.map(topic => <TopicName
             key={topic.id}
