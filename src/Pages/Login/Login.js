@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FcGoogle } from "react-icons/fc";
 import {FaGithub} from 'react-icons/fa';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
@@ -7,8 +7,8 @@ import { GoogleAuthProvider } from 'firebase/auth';
 
 const Login = () => {
   const {setUser, logInUser, googleSignIn} = useContext(AuthContext);
-
   const googleProvider = new GoogleAuthProvider();
+  const navigate = useNavigate();
 
   const handleLogIn = event =>{
     event.preventDefault();
@@ -23,6 +23,7 @@ const Login = () => {
       console.log(user);
       setUser(user);
       form.reset();
+      navigate('/');
     })
     .catch(error => {
       console.log(error);

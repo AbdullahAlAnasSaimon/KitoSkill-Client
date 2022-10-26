@@ -1,8 +1,9 @@
 import React from 'react';
 import { useState } from 'react';
 import { createContext } from 'react';
-import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
+import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
 import app from '../../firebase/firebase.config';
+import { useEffect } from 'react';
 
 
 
@@ -27,6 +28,14 @@ const AuthProvider = ({children}) => {
   const googleSignIn = provider =>{
     return signInWithPopup(auth, provider);
   }
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) =>{
+      setUser(currentUser);
+    })
+
+    return () => unsubscribe();
+  }, [])
 
   // set authInfo object with multiple value
   const authInfo = {

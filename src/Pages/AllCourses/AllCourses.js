@@ -5,7 +5,6 @@ import LeftSideNav from '../LeftSideNav/LeftSideNav';
 
 const AllCourses = () => {
   const allCourses = useLoaderData();
-  // console.log(allCourses);
   return (
     <div className=''>
       <h2>Courses : {allCourses.length}</h2>
@@ -18,7 +17,7 @@ const AllCourses = () => {
             ></LeftSideNav>)
           }
         </div>
-        <div className='grid grid-cols-3 gap-10 w-10/12 mx-auto'>
+        <div className='grid grid-cols-3 gap-6 w-10/12 mx-auto'>
           {
             allCourses.map(courses => <Courses
               key={courses.id}
