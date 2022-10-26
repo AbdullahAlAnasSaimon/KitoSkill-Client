@@ -6,10 +6,10 @@ import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 const Header = () => {
   const { user, logOutUser } = useContext(AuthContext);
 
-  const handleLogOut = () =>{
+  const handleLogOut = () => {
     logOutUser()
-    .then(() => {})
-    .catch(error => console.log(error))
+      .then(() => { })
+      .catch(error => console.log(error))
   }
 
   return (
@@ -26,35 +26,50 @@ const Header = () => {
             <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
               <li><Link to='/home' className="normal-case text-md md:text-lg font-semibold mx-6">Home Page</Link></li>
               <li><Link to='/courses' className="normal-case text-md md:text-lg font-semibold mx-6">Courses</Link></li>
-                <li><Link to='/faq' className="normal-case text-md md:text-lg font-semibold mx-6">FAQ</Link></li>
-                  <li><Link to='/blog' className="normal-case text-md md:text-lg font-semibold mx-6">Blog</Link></li>
-                  </ul>
-                </div>
-              </div>
-              <div className="navbar-center">
-                <div className='hidden lg:block'>
-                  <Link to='/courses' className="normal-case text-lg font-semibold mx-6">Courses</Link>
-                  <Link to='/faq' className="normal-case text-lg font-semibold mx-6">FAQ</Link>
-                  <Link to='/blog' className="normal-case text-lg font-semibold mx-6">Blog</Link>
-                </div>
-                <div className='md:block lg:hidden'>
-                  <Link to='/home' className="normal-case text-lg font-semibold">Kito Skill</Link>
-                </div>
-              </div>
-              <div className="navbar-end">
-                {
-                  user?.uid ?
-                  <>
-                    <p>{user.email}</p>
-                    <button onClick={handleLogOut} className='btn btn-ghost'>Log Out</button>
-                  </>
-                  :
-                  <Link className='btn btn-ghost' to='/login'>Log In</Link>
-                }
-              </div>
+              <li><Link to='/faq' className="normal-case text-md md:text-lg font-semibold mx-6">FAQ</Link></li>
+              <li><Link to='/blog' className="normal-case text-md md:text-lg font-semibold mx-6">Blog</Link></li>
+            </ul>
           </div>
         </div>
-        );
+        <div className="navbar-center">
+          <div className='hidden lg:block'>
+            <Link to='/courses' className="normal-case text-lg font-semibold mx-6">Courses</Link>
+            <Link to='/faq' className="normal-case text-lg font-semibold mx-6">FAQ</Link>
+            <Link to='/blog' className="normal-case text-lg font-semibold mx-6">Blog</Link>
+          </div>
+          <div className='md:block lg:hidden'>
+            <Link to='/home' className="normal-case text-lg font-semibold">Kito Skill</Link>
+          </div>
+        </div>
+        <div className="navbar-end">
+          {
+            user?.uid ?
+              <div className="dropdown dropdown-end">
+                <div className='tooltip tooltip-left' data-tip={user?.displayName}>
+                  <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                    <div className="w-10 rounded-full">
+                      <img src={user?.photoURL} alt='' />
+                    </div>
+                  </label>
+                </div>
+                <ul tabIndex={0} className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
+                  <li>
+                    <Link className="justify-between">
+                      Profile
+                      <span className="badge">New</span>
+                    </Link>
+                  </li>
+                  <li><Link>Settings</Link></li>
+                  <li><button onClick={handleLogOut}>Logout</button></li>
+                </ul>
+              </div>
+              :
+              <Link className='btn btn-ghost' to='/login'>Log In</Link>
+          }
+        </div>
+      </div>
+    </div>
+  );
 };
 
-        export default Header;
+export default Header;

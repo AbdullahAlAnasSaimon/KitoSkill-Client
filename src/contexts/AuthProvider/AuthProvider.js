@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { createContext } from 'react';
-import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/auth';
+import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth';
 import app from '../../firebase/firebase.config';
 import { useEffect } from 'react';
 
@@ -29,7 +29,13 @@ const AuthProvider = ({children}) => {
 
   // sign out user
   const logOutUser = () =>{
+    setLoading(true);
     return signOut(auth);
+  }
+
+  // update user
+  const updateUserProfile = (profile) =>{
+    return updateProfile(auth.currentUser, profile);
   }
 
   // google sign in method
@@ -41,9 +47,9 @@ const AuthProvider = ({children}) => {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) =>{
-      setLoading(false);
       setUser(currentUser);
-    })
+      setLoading(false);
+    });
 
     return () => unsubscribe();
   }, [])
@@ -56,6 +62,7 @@ const AuthProvider = ({children}) => {
     createUser,
     logInUser,
     logOutUser,
+    updateUserProfile,
     googleSignIn,
   };
 
