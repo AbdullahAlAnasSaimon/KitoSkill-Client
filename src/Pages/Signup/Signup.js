@@ -5,6 +5,7 @@ import {FaGithub} from 'react-icons/fa';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 import { GoogleAuthProvider } from 'firebase/auth';
 import { useState } from 'react';
+import toast from 'react-hot-toast';
 
 const Signup = () => {
   const {setUser, createUser, googleSignIn, logOutUser, updateUserProfile} = useContext(AuthContext);
@@ -29,25 +30,27 @@ const Signup = () => {
       const user = result.user;
       console.log(user);
       setUser(user);
+      toast.success('Sign Up Successfull');
       form.reset();
       handleUpdateUserProfile(fullName, photoURL);
       logOutUser();
       navigate('/login');
     })
     .catch(error => {
-      console.log(error);
+      toast.error(error.message);
     })  
   }
-
+  
   const signUpWithGoogle = () =>{
     googleSignIn(googleProvider)
     .then(result =>{
       const user = result.user;
-      console.log(user);
+      setUser(user);
+      toast.success('Sign Up Successfull');
       navigate('/');
     })
     .catch(error => {
-      console.log(error);
+      toast.error(error.message);
     })
   }
 

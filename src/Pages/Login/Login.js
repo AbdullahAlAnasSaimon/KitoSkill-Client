@@ -4,6 +4,7 @@ import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from 'react-icons/fa';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 import { GoogleAuthProvider } from 'firebase/auth';
+import toast from 'react-hot-toast';
 
 const Login = () => {
   const { setUser, logInUser, googleSignIn } = useContext(AuthContext);
@@ -23,25 +24,26 @@ const Login = () => {
     logInUser(email, password)
       .then(result => {
         const user = result.user;
-        console.log(user);
         setUser(user);
+        toast.success('Log In Successfull');
         form.reset();
         navigate(from, { replace: true });
       })
       .catch(error => {
-        console.log(error);
+        toast.error(error.message);
       })
-  }
-
-  const signUpWithGoogle = () => {
-    googleSignIn(googleProvider)
+    }
+    
+    const signUpWithGoogle = () => {
+      googleSignIn(googleProvider)
       .then(result => {
         const user = result.user;
-        console.log(user);
+        setUser(user);
+        toast.success('Log In Successfull');
         navigate(from, { replace: true });
       })
       .catch(error => {
-        console.log(error);
+        toast.error(error);
       })
   }
 
