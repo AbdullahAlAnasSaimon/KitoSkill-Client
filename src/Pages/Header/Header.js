@@ -5,8 +5,8 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 
 const Header = () => {
+
   const { user, logOutUser } = useContext(AuthContext);
-  console.log(user);
   const handleLogOut = () => {
     logOutUser()
       .then(() => { })
@@ -19,8 +19,8 @@ const Header = () => {
         <div className="navbar-start">
           <div className='hidden lg:block'>
             <Link to='/home' className="flex items-center">
-              <img className='w-16' src={Logo} alt="" />
-              <h1 className='normal-case text-2xl md:text-3xl font-bold'>Kito Skill</h1>
+              <img className='w-12' src={Logo} alt="" />
+              <h1 className='normal-case text-2xl text-gray-700 font-bold'>Kito Skill</h1>
             </Link>
           </div>
           <div className="dropdown lg:hidden">
