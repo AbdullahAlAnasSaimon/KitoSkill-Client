@@ -44,7 +44,7 @@ const Login = () => {
         navigate(from, { replace: true });
       })
       .catch(error => {
-        toast.error(error);
+        toast.error(error.message);
       })
   }
 
@@ -54,7 +54,7 @@ const Login = () => {
       const user = result.user;
       setUser(user);
       toast.success('Sign Up Successfull');
-      navigate('/');
+      navigate(from, { replace: true });
     })
     .catch(error => {
       toast.error(error.message);

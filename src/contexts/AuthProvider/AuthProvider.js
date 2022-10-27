@@ -14,6 +14,7 @@ const auth = getAuth(app);
 const AuthProvider = ({children}) => {
   const [user, setUser] = useState(null); // set user state for get the current user
   const [loading, setLoading] = useState(true);
+  const [theme, setTheme] = useState('light');
 
   // create user with email and password
   const createUser = (email, password) =>{
@@ -65,6 +66,8 @@ const AuthProvider = ({children}) => {
     user,
     setUser,
     loading,
+    theme,
+    setTheme,
     createUser,
     logInUser,
     logOutUser,

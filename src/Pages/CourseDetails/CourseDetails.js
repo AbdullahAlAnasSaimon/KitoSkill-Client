@@ -7,12 +7,6 @@ import PdfFile from '../PdfFile/PdfFile';
 const CourseDetails = () => {
   const singleCourseDetails = useLoaderData();
   const { id, author, details, duration, name, photo, price, seats, startingDate, content } = singleCourseDetails;
-  /* window.addEventListener("scroll", () => {
-    let windowY = window.scrollY;
-    if(windowY >= 100){
-      document.getElementById('course-thumb').style.display = 'none';
-    }
-  }) */
 
   return (
     <div className='flex flex-col-reverse md:flex-row w-11/12 mx-auto'>
