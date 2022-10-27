@@ -31,7 +31,6 @@ const Signup = () => {
     createUser(email, password)
     .then(result =>{
       const user = result.user;
-      console.log(user);
       setUser(user);
       toast.success('Sign Up Successfull');
       form.reset();
@@ -72,31 +71,31 @@ const Signup = () => {
   }
 
   return (
-    <form onSubmit={handleSignUp} className='w-4/12 mx-auto border-2 border-gray-300 p-8 my-5 rounded-lg'>
+    <form onSubmit={handleSignUp} className='w-10/12 md:w-6/12 lg:w-4/12 mx-auto border-2 border-gray-300 p-8 my-5 rounded-lg'>
       <h2 className='text-3xl font-bold text-gray-700 mb-8'>Create An Account</h2>
       
       <div className='my-5'>
-        <input className='border-b-2 w-full p-2 focus:border-orange-500 outline-0 duration-200 ease-in-out' type="text" name='fullName' placeholder='Full Name' required/>
+        <input className='border-b-2 w-full p-2 focus:border-violet-500 outline-0 duration-200 ease-in-out' type="text" name='fullName' placeholder='Full Name' required/>
       </div>
       <div className='my-5'>
-        <input className='border-b-2 w-full p-2 focus:border-orange-500 outline-0 duration-200 ease-in-out' type="email" name='email' placeholder='Email Address' required/>
+        <input className='border-b-2 w-full p-2 focus:border-violet-500 outline-0 duration-200 ease-in-out' type="email" name='email' placeholder='Email Address' required/>
       </div>
       <div className='my-5'>
-        <input className='border-b-2 w-full p-2 focus:border-orange-500 outline-0 duration-200 ease-in-out' type="text" name='photoURL' placeholder='User Photo URL' required/>
+        <input className='border-b-2 w-full p-2 focus:border-violet-500 outline-0 duration-200 ease-in-out' type="text" name='photoURL' placeholder='User Photo URL' required/>
       </div>
       <div className='my-5'>
-        <input className='border-b-2 w-full p-2 focus:border-orange-500 outline-0 duration-200 ease-in-out' type="password" name='password' placeholder='Password' required/>
+        <input className='border-b-2 w-full p-2 focus:border-violet-500 outline-0 duration-200 ease-in-out' type="password" name='password' placeholder='Password' required/>
       </div>
       <div className='my-5'>
-        <input className='border-b-2 w-full p-2 focus:border-orange-500 outline-0 duration-200 ease-in-out' type="password" name='confirmPassword' placeholder='Confirm Password' required/>
+        <input className='border-b-2 w-full p-2 focus:border-violet-500 outline-0 duration-200 ease-in-out' type="password" name='confirmPassword' placeholder='Confirm Password' required/>
       </div>
       <div className='flex items-center'>
           <input onClick={handleAccepted} type="checkbox" className="checkbox checkbox-xs rounded-sm mr-2" />
           <label htmlFor="remember">Accept <Link className='underline'>Terms & Conditions</Link></label>
         </div>
-      <button className='disabled:opacity-50 bg-orange-400 hover:bg-orange-500 py-3 w-full my-8 rounded-md font-semibold' type="submit" disabled={!termsAccept}>Sign Up</button>
+      <button className='disabled:opacity-50 bg-indigo-400 hover:bg-indigo-500 py-3 w-full my-8 rounded-md font-semibold' type="submit" disabled={!termsAccept}>Sign Up</button>
 
-      <p className='text-center'>Don't Have An Account? <Link to='/login' className='underline text-orange-400'>Log In</Link></p>
+      <p className='text-center'>Don't Have An Account? <Link to='/login' className='underline text-violet-400'>Log In</Link></p>
       <hr className='border-t-2 border-gray-300 my-8' />
       <p className='font-bold text-gray-500 text-center bg-white -mt-12 mb-4 w-3/12 mx-auto'>OR</p>
 

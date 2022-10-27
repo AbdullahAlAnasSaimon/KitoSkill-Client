@@ -23,7 +23,7 @@ const Header = () => {
           <div className='hidden lg:block'>
             <Link to='/home' className="flex items-center">
               <img className='w-12' src={Logo} alt="" />
-              <h1 className='normal-case text-2xl text-gray-700 font-bold'>Kito Skill</h1>
+              <h1 className='normal-case text-2xl text-gray-700 font-bold'>KitoSkill</h1>
             </Link>
           </div>
           <div className="dropdown lg:hidden">
@@ -57,7 +57,7 @@ const Header = () => {
           <div className='md:block lg:hidden'>
             <Link to='/home' className="flex items-center">
               <img className='w-12' src={Logo} alt="" />
-              <h1 className='normal-case text-xl font-bold'>Kito Skill</h1>
+              <h1 className='normal-case text-xl font-bold'>KitoSkill</h1>
             </Link>
           </div>
         </div>
@@ -79,7 +79,6 @@ const Header = () => {
                       <span className="badge">New</span>
                     </Link>
                   </li>
-                  <li><Link>Settings</Link></li>
                   <li><button onClick={handleLogOut}>Logout</button></li>
                 </ul>
               </div>
