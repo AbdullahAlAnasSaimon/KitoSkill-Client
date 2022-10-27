@@ -4,6 +4,7 @@ import AllCourses from "../Pages/AllCourses/AllCourses";
 import Blog from "../Pages/Blog/Blog";
 import Checkout from "../Pages/Checkout/Checkout";
 import CourseDetails from "../Pages/CourseDetails/CourseDetails";
+import Error from "../Pages/Error/Error";
 import FAQ from "../Pages/FAQ/FAQ";
 import Home from "../Pages/Home/Home";
 import Login from "../Pages/Login/Login";
@@ -63,6 +64,6 @@ export const router = createBrowserRouter([
   },
   {
     path: '*',
-    element: <h1>404 Not Found!</h1>
+    element: <Error></Error>
   }
 ]);
