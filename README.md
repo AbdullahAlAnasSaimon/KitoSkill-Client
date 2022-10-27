@@ -1,6 +1,5 @@
 # [KitoSkill](https://kito-skill.web.app/).
 
-# Invest In Knowledge
 
 Live Site Link:  [KitoSkill](https://kito-skill.web.app/)
 
