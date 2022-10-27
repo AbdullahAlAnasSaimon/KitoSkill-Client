@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 const FeaturedTopics = () => {
   const [topics, setTopics] = useState([]);
   useEffect(() => {
-    fetch('http://localhost:5000/topics')
+    fetch('https://kito-skill-server.vercel.app/topics')
       .then(res => res.json())
       .then(data => setTopics(data))
   }, []);

@@ -3,12 +3,13 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from 'react-icons/fa';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
-import { GoogleAuthProvider } from 'firebase/auth';
+import { GithubAuthProvider, GoogleAuthProvider } from 'firebase/auth';
 import toast from 'react-hot-toast';
 
 const Login = () => {
-  const { setUser, logInUser, googleSignIn } = useContext(AuthContext);
+  const { setUser, logInUser, googleSignIn, githubSignIn } = useContext(AuthContext);
   const googleProvider = new GoogleAuthProvider();
+  const githubProvider = new GithubAuthProvider();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -47,6 +48,19 @@ const Login = () => {
       })
   }
 
+  const signUpWithGithub = () =>{
+    githubSignIn(githubProvider)
+    .then(result =>{
+      const user = result.user;
+      setUser(user);
+      toast.success('Sign Up Successfull');
+      navigate('/');
+    })
+    .catch(error => {
+      toast.error(error.message);
+    })
+  }
+
   return (
     <form onSubmit={handleLogIn} className='w-10/12 md:w-6/12 lg:w-4/12 mx-auto border-2 border-gray-300 p-8 my-5 rounded-lg'>
       <h2 className='text-3xl font-bold text-gray-700 mb-8'>Log In</h2>
@@ -71,7 +85,7 @@ const Login = () => {
       <p className='font-bold text-gray-500 text-center bg-white -mt-12 mb-4 w-3/12 mx-auto'>OR</p>
       <div>
         <button onClick={signUpWithGoogle} type='button' className='border-2 border-gray-700 hover:bg-gray-100 w-full my-2 py-2 rounded-md'><FcGoogle className='text-xl inline-block mr-3' />Log In With Google</button>
-        <button type='button' className='bg-gray-900 hover:bg-gray-800 text-white w-full my-2 py-3 rounded-md'><FaGithub className='text-xl inline-block mr-3 text-white' />Log In With Github</button>
+        <button onClick={signUpWithGithub} type='button' className='bg-gray-900 hover:bg-gray-800 text-white w-full my-2 py-3 rounded-md'><FaGithub className='text-xl inline-block mr-3 text-white' />Log In With Github</button>
       </div>
     </form>
   );

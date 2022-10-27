@@ -8,6 +8,7 @@ import FAQ from "../Pages/FAQ/FAQ";
 import Home from "../Pages/Home/Home";
 import Login from "../Pages/Login/Login";
 import Signup from "../Pages/Signup/Signup";
+import UserProfile from "../Pages/UserProfile/UserProfile";
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
 
 export const router = createBrowserRouter([
@@ -26,12 +27,12 @@ export const router = createBrowserRouter([
       {
         path: '/courses',
         element: <AllCourses></AllCourses>,
-        loader: () => fetch('http://localhost:5000/courses')
+        loader: () => fetch('https://kito-skill-server.vercel.app/courses')
       },
       {
         path: '/courses/:courseId',
         element: <CourseDetails></CourseDetails>,
-        loader: ({params}) => fetch(`http://localhost:5000/courses/${params.courseId}`)
+        loader: ({params}) => fetch(`https://kito-skill-server.vercel.app/courses/${params.courseId}`)
       },
       {
         path: '/blog',
@@ -42,9 +43,13 @@ export const router = createBrowserRouter([
         element: <FAQ></FAQ>
       },
       {
+        path: '/profile',
+        element: <PrivateRoute><UserProfile></UserProfile></PrivateRoute>
+      },
+      {
         path: '/checkout/:Id',
         element: <PrivateRoute><Checkout></Checkout></PrivateRoute>,
-        loader: ({params}) => fetch(`http://localhost:5000/courses/${params.Id}`)
+        loader: ({params}) => fetch(`https://kito-skill-server.vercel.app/courses/${params.Id}`)
       },
       {
         path: '/login',

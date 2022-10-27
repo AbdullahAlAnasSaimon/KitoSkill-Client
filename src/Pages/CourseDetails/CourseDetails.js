@@ -1,11 +1,12 @@
 import React from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
-import { FaUserAlt, FaCalendar, FaClock, FaUserFriends, FaDollarSign } from 'react-icons/fa';
+import { FaUserAlt, FaCalendar, FaClock, FaUserFriends, FaDollarSign, FaDownload } from 'react-icons/fa';
+import { PDFDownloadLink } from '@react-pdf/renderer';
+import PdfFile from '../PdfFile/PdfFile';
 
 const CourseDetails = () => {
   const singleCourseDetails = useLoaderData();
   const { id, author, details, duration, name, photo, price, seats, startingDate, content } = singleCourseDetails;
-console.log(singleCourseDetails);
   /* window.addEventListener("scroll", () => {
     let windowY = window.scrollY;
     if(windowY >= 100){
@@ -16,7 +17,15 @@ console.log(singleCourseDetails);
   return (
     <div className='flex flex-col-reverse md:flex-row w-11/12 mx-auto'>
       <div className='w-full md:w-7/12 md:px-10 md:py-3'>
-        <h2 className='text-3xl lg:text-5xl font-bold'>{name}</h2>
+        <div className='flex items-center'>
+        <h2 className='text-3xl lg:text-4xl font-bold'>{name}</h2>
+        <PDFDownloadLink key={id} document={<PdfFile key={id} courses={singleCourseDetails} />} filename="FORM">
+      {({loading}) => (loading ? 
+      "loading" : 
+      <FaDownload className='ml-4 text-xl text-gray-600'/> )}
+      </PDFDownloadLink>
+        
+        </div>
         <div className='flex items-center text-gray-500 my-5 text-xl'>
           <FaUserAlt className='w-7 h-7 p-1 mr-2 border-2 rounded-full' />
           <p className='font-semibold'>{author}</p>
@@ -59,8 +68,7 @@ console.log(singleCourseDetails);
             </div>
           </div>
           <div>
-            <Link to={`/checkout/${id}`}><button className='block bg-violet-500 hover:bg-violet-400 text-xl font-semibold text-white my-5 py-3 w-full rounded-md'>Get Premium Access</button></Link>
-            <button className='block bg-indigo-500 hover:bg-indigo-400 text-xl font-semibold text-white my-5 py-3 w-full rounded-md'>Download PDF</button>
+            <Link to={`/checkout/${id}`}><button className='block bg-indigo-500 hover:bg-indigo-400 text-xl font-semibold text-white my-5 py-3 w-full rounded-md'>Get Premium Access</button></Link>
           </div>
         </div>
       </div>

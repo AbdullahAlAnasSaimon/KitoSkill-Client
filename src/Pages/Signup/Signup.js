@@ -3,15 +3,16 @@ import { Link, useNavigate } from 'react-router-dom';
 import { FcGoogle } from "react-icons/fc";
 import {FaGithub} from 'react-icons/fa';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
-import { GoogleAuthProvider } from 'firebase/auth';
+import { GithubAuthProvider, GoogleAuthProvider } from 'firebase/auth';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
 
 const Signup = () => {
-  const {setUser, createUser, googleSignIn, logOutUser, updateUserProfile} = useContext(AuthContext);
+  const {setUser, createUser, googleSignIn, githubSignIn, logOutUser, updateUserProfile} = useContext(AuthContext);
   const [termsAccept, setTermsAccept] = useState(false);
 
   const googleProvider = new GoogleAuthProvider();
+  const githubProvider = new GithubAuthProvider();
   const navigate = useNavigate();
 
   
@@ -26,7 +27,6 @@ const Signup = () => {
     if(password !== confirmPassword){
       return toast.error('Password Did Not Match');
     }
-    console.log(fullName, email, password, confirmPassword);
     
     createUser(email, password)
     .then(result =>{
@@ -45,6 +45,19 @@ const Signup = () => {
   
   const signUpWithGoogle = () =>{
     googleSignIn(googleProvider)
+    .then(result =>{
+      const user = result.user;
+      setUser(user);
+      toast.success('Sign Up Successfull');
+      navigate('/');
+    })
+    .catch(error => {
+      toast.error(error.message);
+    })
+  }
+
+  const signUpWithGithub = () =>{
+    githubSignIn(githubProvider)
     .then(result =>{
       const user = result.user;
       setUser(user);
@@ -101,7 +114,7 @@ const Signup = () => {
 
       <div>
         <button onClick={signUpWithGoogle} type='button' className='border-2 border-gray-700 hover:bg-gray-100 w-full my-2 py-2 rounded-md'><FcGoogle className='text-xl inline-block mr-3'/> Sign Up With Google</button>
-        <button type='button' className='bg-gray-900 hover:bg-gray-800 text-white w-full my-2 py-3 rounded-md'><FaGithub className='text-xl inline-block mr-3 text-white'/>Sign Up With Github</button>
+        <button onClick={signUpWithGithub} type='button' className='bg-gray-900 hover:bg-gray-800 text-white w-full my-2 py-3 rounded-md'><FaGithub className='text-xl inline-block mr-3 text-white'/>Sign Up With Github</button>
       </div>
     </form>
   );

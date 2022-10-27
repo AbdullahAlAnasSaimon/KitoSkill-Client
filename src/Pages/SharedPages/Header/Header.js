@@ -4,6 +4,7 @@ import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 import toast from 'react-hot-toast';
+import { FaUserAlt } from 'react-icons/fa';
 
 const Header = () => {
 
@@ -65,16 +66,21 @@ const Header = () => {
           {
             user?.uid ?
               <div className="dropdown dropdown-end">
-                <div className='tooltip tooltip-left' data-tip={user?.displayName}>
+                <div className='tooltip tooltip-left' data-tip={user?.displayName ? user?.displayName : 'No Name Found'}>
                   <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                     <div className="w-10 rounded-full">
-                      <img src={user?.photoURL} alt='' />
+                      <>{
+                        user?.photoURL ?
+                          <img className='w-10 h-10rounded-full' src={user?.photoURL} alt="" /> :
+                          <FaUserAlt className='w-10 h-10 rounded-full text-gray-600' />
+                      }
+                      </>
                     </div>
                   </label>
                 </div>
                 <ul tabIndex={0} className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
                   <li>
-                    <Link className="justify-between">
+                    <Link to='/profile' className="justify-between">
                       Profile
                       <span className="badge">New</span>
                     </Link>
