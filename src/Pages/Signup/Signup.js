@@ -23,6 +23,9 @@ const Signup = () => {
     const photoURL = form.photoURL.value;
     const password = form.password.value;
     const confirmPassword = form.confirmPassword.value;
+    if(password !== confirmPassword){
+      return toast.error('Password Did Not Match');
+    }
     console.log(fullName, email, password, confirmPassword);
     
     createUser(email, password)

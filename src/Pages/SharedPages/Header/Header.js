@@ -17,7 +17,7 @@ const Header = () => {
   }
 
   return (
-    <div className='bg-violet-200/50 sticky top-0 backdrop-blur border-b-2 borer-gray-300'>
+    <div className='bg-violet-200/50 sticky top-0 backdrop-blur border-b-2 borer-gray-300 z-10'>
       <div className="navbar py-2 px-6 rounded-md w-full md:w-11/12 mx-auto">
         <div className="navbar-start">
           <div className='hidden lg:block'>

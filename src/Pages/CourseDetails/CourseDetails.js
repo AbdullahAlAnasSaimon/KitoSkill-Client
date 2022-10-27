@@ -4,8 +4,8 @@ import { FaUserAlt, FaCalendar, FaClock, FaUserFriends, FaDollarSign } from 'rea
 
 const CourseDetails = () => {
   const singleCourseDetails = useLoaderData();
-  const { id, author, details, duration, name, photo, price, seats, startingDate } = singleCourseDetails;
-
+  const { id, author, details, duration, name, photo, price, seats, startingDate, content } = singleCourseDetails;
+console.log(singleCourseDetails);
   /* window.addEventListener("scroll", () => {
     let windowY = window.scrollY;
     if(windowY >= 100){
@@ -22,6 +22,14 @@ const CourseDetails = () => {
           <p className='font-semibold'>{author}</p>
         </div>
         <p>{details}</p>
+        <div className="overflow-x-auto">
+          <h2 className='my-8 text-2xl font-bold'>Course Content</h2>
+          <table className="table w-full z-0">
+            <tbody className='border'>
+              {content.map(c => <tr><th className='font-semibold'>{c}</th></tr>)}
+            </tbody>
+          </table>
+        </div>
       </div>
       <div className='w-full md:w-5/12 mb-10 md:mb-0'>
         <img id='course-thumb' className='w-6/12 mx-auto' src={photo} alt="Course Thumbnail" />
